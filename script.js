@@ -31,3 +31,28 @@ const copy = () => {
   }
 };
 document.getElementById("copyButton").addEventListener("click", copy);
+
+//otp pasteing
+
+const paste = async () => {
+  // the readText returns a promise, so we use async and await
+  try {
+    let pasteInput = document.getElementById("pasteInput");
+
+    let copiedText = await navigator.clipboard.readText();
+
+    pasteInput.textContent = copiedText;
+    alert("OTP pasted from clipboard!");
+  } catch (error) {
+    console.error("Error pasting from clipboard: ", error);
+    alert("Failed to paste from clipboard");
+  }
+};
+document.getElementById("pasteButton").addEventListener("click", paste);
+
+//* Note *//
+// Browsers block clipboard access to prevent 
+// potential abuse by malicious websites.
+// You can reset clipboard permissions in the browser.
+// In Chrome go to the Page Info by clicking the lock icon next to the URL
+// and reset permissions, this can be done only by user.
